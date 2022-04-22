@@ -1,7 +1,7 @@
 '''
 - File Name: main.py
 - Writer: Geunyoung kim
-- Update Information: [2022, 04, 22] File Version 0.1
+- Update Information: [2022, 04, 22] File Version 0.2
 '''
 
 import os, re, codecs
@@ -18,7 +18,32 @@ def menu():
 
 # Collect particular character's dialogue
 def collectPartiCharDia():
-    pass
+    print("----------------------------------------------\n")
+    print("   [Collect particular character's dialogue]\n")
+    charname = input('Please enter character\'s name: ')
+
+    f = codecs.open('friends101.txt', 'r', encoding = 'utf-8')
+    script101 = f.readlines()
+    f.close()
+
+    Line = []
+    for item in script101:
+        if re.match(charname + ':.+', item):
+            Line += re.match(charname + ':.+', item).group()
+
+    dialogue = ''
+    for item in Line:
+        dialogue += item
+
+    if len(dialogue) == 0:
+        print('\nError: Dialogue or Character is not exist...')
+    else:
+        f = codecs.open(charname + '.txt', 'w', encoding = 'utf-8')
+        f.write(dialogue)
+        f.close()
+        print('\nText file is created!')
+    
+    print("----------------------------------------------\n")
 
 # Make a list of characters
 def makeListOfChar():
@@ -41,13 +66,13 @@ while True:
         print("\nError: Illegal Selection..\n")
     else:
         if choice == 1:
-            pass
+            collectPartiCharDia()
         elif choice == 2:
-            pass
+            makeListOfChar()
         elif choice == 3:
-            pass
+            collectStageDia()
         elif choice == 4:
-            pass
+            collectDiaPartiWord
         elif choice == 5:
             exit()
         else:
