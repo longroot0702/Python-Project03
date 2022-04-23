@@ -1,7 +1,7 @@
 '''
 - File Name: main.py
 - Writer: Geunyoung kim
-- Update Information: [2022, 04, 23] File Version 0.4
+- Update Information: [2022, 04, 23] File Version 0.5
 '''
 
 import os, re, codecs
@@ -48,7 +48,7 @@ def collectPartiCharDia():
 # Make a list of characters
 def makeListOfChar():
     print("----------------------------------------------\n")
-    print("       [Make a list of characters]\n")
+    print("          [Make a list of characters]\n")
     f = codecs.open('friends101.txt', 'r', encoding = 'utf-8')
     script101 = f.read()
     f.close()
@@ -70,7 +70,26 @@ def makeListOfChar():
 
 # Collect stage directions
 def collectStageDia():
-    pass
+    print("----------------------------------------------\n")
+    print("          [Collect stage directions]\n")
+
+    f = codecs.open('friends101.txt', 'r', encoding = 'utf-8')
+    script101 = f.read()
+    f.close()
+
+    stage_direction = re.findall(r'\([A-Za-z].+?\)', script101)
+
+    if len(stage_direction) == 0:
+        print('\nError: Dialogue or stage_direction is not exist...')
+    else:
+        f = codecs.open('stage_direction.txt', 'w', encoding = 'utf-8')
+        for item in stage_direction:
+            f.write(item)
+            f.write('\n')
+        f.close()
+        print('Text file is created!')
+    
+    print("----------------------------------------------\n")
 
 # Collect dialogue included particular word
 def collectDiaPartiWord():
