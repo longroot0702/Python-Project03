@@ -1,0 +1,15 @@
+*** Warning: Please exclude particular word(Ex. All, note, ..., etc) ***
+
+Monica
+Rachel
+Waitress
+All
+Customer
+Phoebe
+Frannie
+Scene
+Paul
+Ross
+Note
+Joey
+Chandler

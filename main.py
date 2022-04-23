@@ -1,7 +1,7 @@
 '''
 - File Name: main.py
 - Writer: Geunyoung kim
-- Update Information: [2022, 04, 23] File Version 0.3
+- Update Information: [2022, 04, 23] File Version 0.4
 '''
 
 import os, re, codecs
@@ -47,7 +47,26 @@ def collectPartiCharDia():
 
 # Make a list of characters
 def makeListOfChar():
-    pass
+    print("----------------------------------------------\n")
+    print("       [Make a list of characters]\n")
+    f = codecs.open('friends101.txt', 'r', encoding = 'utf-8')
+    script101 = f.read()
+    f.close()
+
+    char = list(set(re.findall(r'[A-Z][a-z]+:', script101)))
+
+    if len(char) == 0:
+        print('\nError: Dialogue or Character is not exist...')
+    else:
+        f = codecs.open('character.txt', 'w', encoding = 'utf-8')
+        f.write('*** Warning: Please exclude particular word(Ex. All, note, ..., etc) ***\n\n')
+        for item in char:
+            f.write(item[:-1])
+            f.write('\n')
+        f.close()
+        print('Text file is created!')
+    
+    print("----------------------------------------------\n")
 
 # Collect stage directions
 def collectStageDia():
